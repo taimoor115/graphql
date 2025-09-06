@@ -1,22 +1,24 @@
 import { ApolloServer } from "@apollo/server";
+import { User } from "./user/index.js";
 
 async function startGQLServer() {
 
     const server = new ApolloServer({
         typeDefs: `
             type Query {
-                _empty: String
+                # ${User.queries}
+                hello:  String
             }
             type Mutation {
-                _empty: String
+                ${User.mutations}
             }
         `,
         resolvers: {
             Query: {
-                _empty: () => ""
+                ...User.resolvers.Query
             },
             Mutation: {
-                _empty: () => ""
+                ...User.resolvers.Mutation
             }
         },
     })
