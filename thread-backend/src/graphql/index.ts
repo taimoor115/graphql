@@ -5,9 +5,9 @@ async function startGQLServer() {
 
     const server = new ApolloServer({
         typeDefs: `
+            ${User.typeDefs}
             type Query {
-                # ${User.queries}
-                hello:  String
+                ${User.queries}
             }
             type Mutation {
                 ${User.mutations}
